@@ -103,7 +103,7 @@ int getHeight(Node* root) {
 
 #### **d, Cải tiến**
 
-- Ý tưởng cải tiến: Sử dụng kỹ thuật memoization (lưu trữ kết quả tính toán để tránh tính toán lại). Cụ thể, chúng ta có thể tạo ra một bảng băm (hash table) để lưu trữ chiều cao của các nút đã được tính toán. Khi đệ quy đến một nút, trước khi tính chiều cao của nó, ta kiểm tra xem chiều cao của nút đó đã được tính toán trước đó chưa, nếu có thì trả về kết quả lưu trữ trong bảng băm, ngược lại tính toán bình thường và lưu trữ kết quả vào bảng băm.
+- Ý tưởng cải tiến: Sử dụng kỹ thuật [Memoization](https://www.freecodecamp.org/news/memoization-in-javascript-and-react/#:~:text=In%20programming%2C%20memoization%20is%20an,instead%20of%20computing%20it%20again.) (lưu trữ kết quả tính toán để tránh tính toán lại). Cụ thể, chúng ta có thể tạo ra một bảng băm (hash table) để lưu trữ chiều cao của các nút đã được tính toán. Khi đệ quy đến một nút, trước khi tính chiều cao của nó, ta kiểm tra xem chiều cao của nút đó đã được tính toán trước đó chưa, nếu có thì trả về kết quả lưu trữ trong bảng băm, ngược lại tính toán bình thường và lưu trữ kết quả vào bảng băm.
 
 
 - Mã giả:
