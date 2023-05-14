@@ -4,11 +4,9 @@
 
 ## **1, Khái niệm đệ quy**
 
-Đệ quy là một phương pháp giải quyết bài toán bằng cách phân chia bài toán lớn thành các bài toán con nhỏ hơn, và giải quyết từng bài toán con đó bằng cách sử dụng lại chính phương pháp giải quyết bài toán ban đầu trên bài toán con đó.
+Đệ quy là một phương pháp giải quyết bài toán bằng cách phân chia bài toán lớn thành các bài toán con nhỏ hơn có cách giải quyết tương tự. Vì thế ta hoàn toàn có thể áp dụng lại cách giải quyết của bài toán lớn để giải quyết bài toán con, trong lập trình, việc này được thực hiện khi một hàm gọi lại chính nó.
 
-Trong đệ quy, thay vì giải quyết bài toán lớn trực tiếp, ta sẽ chia nhỏ nó thành các bài toán con có cùng cấu trúc và giải quyết từng bài toán con đó. Trong quá trình giải quyết bài toán con, nếu bài toán con vẫn còn phức tạp, ta sẽ tiếp tục chia nhỏ và giải quyết bài toán con đó bằng cách sử dụng lại chính phương pháp giải quyết bài toán ban đầu.
-
-Phương pháp đệ quy thường được sử dụng trong lập trình để giải quyết các bài toán liên quan đến cây, đồ thị, hoặc các bài toán có cấu trúc lặp đi lặp lại. Trong lập trình, đệ quy thường được triển khai thông qua việc sử dụng hàm đệ quy, trong đó hàm sẽ gọi lại chính nó để giải quyết các bài toán con.
+Trong đệ quy, thay vì giải quyết bài toán lớn trực tiếp, ta sẽ chia nhỏ nó thành các bài toán con có cùng cấu trúc và giải quyết từng bài toán con đó. Trong quá trình giải quyết bài toán con, nếu bài toán con vẫn còn phức tạp, ta sẽ tiếp tục chia nhỏ và giải quyết bài toán con đó bằng cách sử dụng lại chính phương pháp giải quyết bài toán ban đầu, tương tự như bước đầu tiên. Phương pháp đệ quy thường được sử dụng trong lập trình để giải quyết các bài toán liên quan đến cây, đồ thị, hoặc các bài toán có cấu trúc lặp đi lặp lại. 
 
 ## **2, Ví dụ cơ bản**
 
@@ -47,7 +45,6 @@ Với sự phát triển của khoa học máy tính và công nghệ thông tin
 
 Ngoaì ra cần lưu ý một số định lý liên quan đến đệ quy như sau:
 - Định lý về đệ quy: Định lý này chỉ ra rằng một thuật toán đệ quy có thể được chuyển đổi thành một thuật toán không đệ quy, và ngược lại.
-
 - Định lý đệ quy đơn giản: Định lý này chỉ ra rằng một bài toán đệ quy có thể được giải quyết bằng một thuật toán đệ quy đơn giản nếu các bài toán con của nó được giải quyết bằng các bài toán con đơn giản hơn.
 
 
@@ -70,19 +67,15 @@ struct Node {
   
   ```
   int getHeight(node root: Chiều cao tính từ node này) {
-    if (Cây không chứa node nào) return 0; // base case 1: Cây có chiều cao là 0
-    if (Cây chỉ có một node duy nhất) return 0;  // base case 2: Một nút duy nhất có chiều cao là 0
+    if (Cây không chứa node nào) return 0; // base case: Cây không có nút nào thì có chiều cao là 0
     
     Khởi tạo chiều cao của cây con trái: 
-      leftHeight = getHeight(node root->left: Chiều cao bắt đầu tính từ node con bên trái)
+      leftHeight = getHeight(node root->left: Chiều cao bắt đầu tính từ node con bên trái)  // Recursive part
     Khởi tạo chiều cao của cây con phải: 
-      rightHeight = getHeight(node root->right: Chiều cao bắt đầu tính từ node con bên phải)
+      rightHeight = getHeight(node root->right: Chiều cao bắt đầu tính từ node con bên phải)  // Recursive part
       
-    Chiều cao của cây nhị phân là số lượng cạnh trên đường đi từ nút gốc đến nút lá xa nhất. Nếu cây nhị phân chỉ có một nút thì chiều cao của cây là 0. Nếu cây không có nút nào ta cũng coi như chiều cao của cây là 0.
-    Do đó, khi ta có một cây không chứa nút nào, ta trả về 0, và hàm đệ quy không được gọi, nhưng khi cây có một nút duy nhất, hàm đệ quy vẫn được gọi. Thêm nữa, nếu cây có 2 node trở lên, ta dễ dàng nhận thấy chiều cao của cây sẽ là chiều cao lớn nhất trong 2 cây con + 1.
-    Vì vậy, khi cây có một node duy nhất, ta cần trả về 0.
-    
-    return 1 + max (leftHeight, rightHeight);
+    Trả về chiều cao của cây
+    return 1 + max (leftHeight, rightHeight); // Hàm đệ quy được gọi
   }
   ```
 
@@ -93,9 +86,7 @@ Cài đặt thuật toán trên bằng ngôn ngữ C++:
 
 ```
 int getHeight(Node* root) {
-  if (!root) return -1;
-  
-  if (!root->left && !root->right) return 0;
+  if (!root) return 0;
   
   int leftHeight = getHeight(root->left);
   int rightHeight = getHeight(root->right);
@@ -106,7 +97,7 @@ int getHeight(Node* root) {
 
 #### **c, Đánh giá**
 
-- Bất biến của thuật toán này là chiều cao của cây con trái và cây con phải được tính toán độc lập với nhau, sau đó ta lấy chiều cao lớn nhất của hai cây con đó và cộng thêm 1 để tính chiều cao của cây hiện tại.
+- Bất biến của thuật toán này là chiều cao của cây con trái và cây con phải được tính toán độc lập với nhau, ta lấy chiều cao lớn nhất trong hai cây con và cộng thêm 1 để tính chiều cao của cây hiện tại.
 - Time Complexity: Thuật toán này có độ phức tạp thời gian là O(n), trong đó n là số lượng nút trong cây. Trường hợp tốt nhất, khi cây có một node duy nhất hoặc không có node nào, thuật toán sẽ có độ phức tạp O(1). Trong trường hợp xấu nhất, độ phức tạp sẽ là O(n) khi cây có dạng như một danh sách liên kết. Độ phức tạp trung bình của thuật toán phụ thuộc vào cấu trúc của cây, nên không thể đưa ra một giá trị chính xác.
 - Độ phức tạp không gian của thuật toán này là O(h), với h là chiều cao của cây. Vì khi thực hiện đệ quy, mỗi lần gọi đệ quy sẽ tạo ra một khung stack mới để lưu trữ các biến cục bộ và chỉ trả về kết quả khi đệ quy được giải quyết. Do đó, chiều cao của cây sẽ là h, số lượng khung stack cần tạo ra để giải quyết đệ quy sẽ là h và do đó độ phức tạp không gian sẽ là O(h).
 
@@ -134,11 +125,49 @@ int getHeight(Node root: bắt đầu tính từ node này, unordered_map<Node*,
   return chiều cao;
 }
 ```
-- Cài đặt
-- Đánh giá
+- Cài đặt:
+
+```
+
+int getHeight(Node* root, unordered_map<Node*, int>& memo) {
+    if (!root) return 0;
+    
+    if (memo.find(root) != memo.end()) {
+        return memo[root];
+    }
+    
+    int leftHeight = getHeight(root->left, memo);
+    int rightHeight = getHeight(root->right, memo);
+    
+    int height = 1 + max(leftHeight, rightHeight);
+    memo[root] = height;
+    
+    return height;
+}
+```
+
+- Đánh giá:
+  - Cải tiến này giúp giảm thiểu số lần tính toán chiều cao của các nút trên cây bằng cách lưu trữ chiều cao của mỗi nút trong cây. Việc lưu trữ này cho phép chúng ta truy cập và sử dụng chiều cao của một nút đã được tính toán trước đó mà không cần tính toán lại.
+
+  - Với cải tiến này, khi tính chiều cao của một nút, ta chỉ cần truy cập vào giá trị chiều cao đã được tính toán trước đó của nút con, thay vì phải tính toán lại chiều cao của nút con đó. Do đó, số lần tính toán chiều cao trên các nút trong cây sẽ giảm, làm tăng tốc độ tính toán và giảm độ phức tạp của thuật toán.
+
+  - Cụ thể, với cải tiến này, ta chỉ cần thực hiện một lần duyệt cây để tính toán và lưu trữ chiều cao của mỗi nút, sau đó ta có thể truy cập và sử dụng giá trị chiều cao này mỗi khi cần thiết mà không cần tính toán lại.
+
+Tổng quan, cải tiến này giúp tối ưu hóa thời gian tính toán và độ phức tạp của thuật toán, đồng thời giảm thiểu việc tính toán lại các giá trị đã tính toán trước đó, giúp tăng tốc độ tính toán.
+
+- Time complexity: O(n), trong đó n là số nút trên cây. Vì mỗi nút được truy cập đúng một lần và mỗi lần truy cập mất O(1) thời gian, nên tổng thời gian là O(n).
+
+- Space complexity: O(h), trong đó h là chiều cao của cây. Do sử dụng đệ quy, với mỗi lời gọi đệ quy, một khung stack mới được tạo ra, và nó sẽ được giải phóng khi hàm đệ quy trả về. Vì vậy, tối đa có thể có h khung stack trên đỉnh nhau, do đó không gian bổ sung tối đa mà thuật toán này sử dụng là O(h). Trong trường hợp xấu nhất, khi cây là cây màu đen (nghĩa là có chiều cao là log n), không gian bổ sung sẽ là O(log n).
 
 
+## **6, Bài tập** ##
+Sau đây là một vài ví dụ về bài tập đệ quy:
+- Tính giai thừa: Giai thừa của một số n là tích của dãy số dương từ 1 đến n, hay có thể gọi là tích của n với giai thừa của (n-1). Do đó ta có thể thiết kế hàm đệ quy cho (n-1) cho đến khi n bằng 1.
 
+- Tìm số Fibonacci: Số fibonacci thứ n là tổng của số fibonacci thứ (n - 1) và số fibonacci thứ (n - 2) với f(0) = 0 và f(1) = 1. Để tính số fibonacci thứ n ta có thể gọi đệ quy cho (n - 1) và (n - 2) cho đến khi n = 0 hoặc n = 1 thì trả về chính nó
 
+- Sắp xếp mảng: Chọn một phần tử bất kỳ trong mảng làm chốt, rồi phân tách mảng thành hai phần: một phần chứa các phần tử nhỏ hơn hoặc bằng chốt và một phần chứa các phần tử lớn hơn chốt. Ta sử dụng đệ quy để sắp xếp hai phần này và ghép lại với nhau.
+
+- Duyệt và tìm kiếm trong cây nhị phân: Đệ quy thường được ứng dụng trong các cấu trúc dữ liệu như cây nhị phân, danh sách liên kết, ... Ta có thể giải đa số các bài tập liên quan đến các cấu trúc dữ liệu trên bằng đệ quy.
 
 
