@@ -171,3 +171,10 @@ Sau đây là một vài ví dụ về bài tập đệ quy:
 - Duyệt và tìm kiếm trong cây nhị phân: Đệ quy thường được ứng dụng trong các cấu trúc dữ liệu như cây nhị phân, danh sách liên kết, ... Ta có thể giải đa số các bài tập liên quan đến các cấu trúc dữ liệu trên bằng đệ quy.
 
 
+
+
+> Infomation source: 
+> - GOOGLE.
+> - OpenAI's ChatGPT.
+> - Algorithms (4th Edition): Robert Sedgewick, Kevin Wayne (2011).
+> 
