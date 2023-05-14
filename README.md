@@ -164,7 +164,7 @@ Tổng quan, cải tiến này giúp tối ưu hóa thời gian tính toán và 
 Sau đây là một vài ví dụ về bài tập đệ quy:
 - Tính giai thừa: Giai thừa của một số n là tích của dãy số dương từ 1 đến n, hay có thể gọi là tích của n với giai thừa của (n-1). Do đó ta có thể thiết kế hàm đệ quy cho (n-1) cho đến khi n bằng 1.
 
-- Tìm số Fibonacci: Số fibonacci thứ n là tổng của số fibonacci thứ (n - 1) và số fibonacci thứ (n - 2) với f(0) = 0 và f(1) = 1. Để tính số fibonacci thứ n ta có thể gọi đệ quy cho (n - 1) và (n - 2) cho đến khi n = 0 hoặc n = 1 thì trả về chính nó
+- Tìm số Fibonacci: Số fibonacci thứ n là tổng của số fibonacci thứ (n - 1) và số fibonacci thứ (n - 2) với f(0) = 0 và f(1) = 1. Để tính số fibonacci thứ n ta có thể gọi đệ quy cho (n - 1) và (n - 2) cho đến khi n = 0 hoặc n = 1 thì trả về chính nó.
 
 - Sắp xếp mảng: Chọn một phần tử bất kỳ trong mảng làm chốt, rồi phân tách mảng thành hai phần: một phần chứa các phần tử nhỏ hơn hoặc bằng chốt và một phần chứa các phần tử lớn hơn chốt. Ta sử dụng đệ quy để sắp xếp hai phần này và ghép lại với nhau.
 
