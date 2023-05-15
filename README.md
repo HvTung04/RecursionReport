@@ -146,13 +146,8 @@ int getHeight(Node* root, unordered_map<Node*, int>& memo) {
 }
 ```
 
-- Đánh giá:
-  - Cải tiến này giúp giảm thiểu số lần tính toán chiều cao của các nút trên cây bằng cách lưu trữ chiều cao của mỗi nút trong cây. Việc lưu trữ này cho phép chúng ta truy cập và sử dụng chiều cao của một nút đã được tính toán trước đó mà không cần tính toán lại.
-
-  - Với cải tiến này, khi tính chiều cao của một nút, ta chỉ cần truy cập vào giá trị chiều cao đã được tính toán trước đó của nút con, thay vì phải tính toán lại chiều cao của nút con đó. Do đó, số lần tính toán chiều cao trên các nút trong cây sẽ giảm, làm tăng tốc độ tính toán và giảm độ phức tạp của thuật toán.
-
-  - Cụ thể, với cải tiến này, ta chỉ cần thực hiện một lần duyệt cây để tính toán và lưu trữ chiều cao của mỗi nút, sau đó ta có thể truy cập và sử dụng giá trị chiều cao này mỗi khi cần thiết mà không cần tính toán lại.
-
+- Đánh giá: Cải tiến này giúp giảm số lần tính toán chiều cao của các nút trên cây bằng cách lưu trữ chiều cao của mỗi nút của cây trong bảng băm được tạo. Việc lưu trữ này cho phép chúng ta truy cập và sử dụng chiều cao của một nút đã được tính toán trước đó mà không cần tính toán lại. Với cải tiến này, khi tính chiều cao của một nút, ta chỉ cần truy cập vào giá trị chiều cao đã được tính toán trước đó của nút con, thay vì phải tính toán lại chiều cao của nút con đó. Do đó, số lần tính toán chiều cao trên các nút trong cây sẽ giảm, làm tăng tốc độ tính toán và giảm độ phức tạp của thuật toán.
+ 
 Tổng quan, cải tiến này giúp tối ưu hóa thời gian tính toán và độ phức tạp của thuật toán, đồng thời giảm thiểu việc tính toán lại các giá trị đã tính toán trước đó, giúp tăng tốc độ tính toán.
 
 - Time complexity: O(n), trong đó n là số nút trên cây. Vì mỗi nút được truy cập đúng một lần và mỗi lần truy cập mất O(1) thời gian, nên tổng thời gian là O(n).
@@ -175,6 +170,5 @@ Sau đây là một vài ví dụ về bài tập đệ quy:
 
 > Infomation source: 
 > - GOOGLE.
-> - OpenAI's ChatGPT.
 > - Algorithms (4th Edition): Robert Sedgewick, Kevin Wayne (2011).
 > 
