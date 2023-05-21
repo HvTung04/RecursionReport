@@ -4,9 +4,7 @@
 
 ## **1, Khái niệm đệ quy**
 
-Đệ quy là một phương pháp giải quyết bài toán bằng cách phân chia bài toán lớn thành các bài toán con nhỏ hơn có cách giải quyết tương tự. Vì thế ta hoàn toàn có thể áp dụng lại cách giải quyết của bài toán lớn để giải quyết bài toán con, trong lập trình, việc này được thực hiện khi một hàm gọi lại chính nó.
-
-Trong đệ quy, thay vì giải quyết bài toán lớn trực tiếp, ta sẽ chia nhỏ nó thành các bài toán con có cùng cấu trúc và giải quyết từng bài toán con đó. Trong quá trình giải quyết bài toán con, nếu bài toán con vẫn còn phức tạp, ta sẽ tiếp tục chia nhỏ và giải quyết bài toán con đó bằng cách sử dụng lại chính phương pháp giải quyết bài toán ban đầu, tương tự như bước đầu tiên. Phương pháp đệ quy thường được sử dụng trong lập trình để giải quyết các bài toán liên quan đến cây, đồ thị, hoặc các bài toán có cấu trúc lặp đi lặp lại. 
+Đệ quy là một phương pháp giải quyết bài toán bằng cách phân chia bài toán lớn thành các bài toán con nhỏ hơn có cách giải quyết tương tự. Vì thế ta hoàn toàn có thể áp dụng lại cách giải quyết của bài toán lớn để giải quyết bài toán con, trong lập trình, việc này thường được thực hiện khi một hàm gọi lại chính nó. Trong đệ quy, thay vì giải quyết bài toán lớn trực tiếp, ta sẽ chia nhỏ nó thành các bài toán con có cùng cấu trúc và giải quyết từng bài toán con đó. Trong quá trình giải quyết bài toán con, nếu bài toán con vẫn còn phức tạp, ta sẽ tiếp tục chia nhỏ và giải quyết bài toán con đó bằng cách sử dụng lại chính phương pháp giải quyết bài toán ban đầu, tương tự như bước đầu tiên. Phương pháp đệ quy thường được sử dụng trong lập trình để giải quyết các bài toán liên quan đến cây, đồ thị, hoặc các bài toán có cấu trúc lặp đi lặp lại.
 
 ## **2, Ví dụ cơ bản**
 
@@ -36,11 +34,11 @@ Với sự phát triển của khoa học máy tính và công nghệ thông tin
 
 ## **4, Các tính chất của đệ quy**
 
-Đệ quy được xây dựng lên bởi các tính chất cơ bản nhưng vô cùng quan trọng: 
+Đệ quy được xây dựng lên bởi các tính chất cơ bản nhưng vô cùng quan trọng, tất cả các hàm đệ quy đều cần chứa những thành phần sau đây: 
 - Trường hợp cơ sở: Đây là điều kiện dừng của đệ quy. Nói cách khác, đệ quy phải dừng lại ở một điểm nào đó và trả về một kết quả.
 - Thành phần tự hồi: Đệ quy là quá trình giải quyết một bài toán bằng cách giải quyết các bài toán con của nó. Các bài toán con này thường giống hệt bài toán ban đầu, chỉ khác về quy mô nhỏ hơn.
 - Đệ quy trực tiếp và gián tiếp: Trong đệ quy trực tiếp, một hàm gọi chính nó làm đầu vào. Trong đệ quy gián tiếp, một hàm gọi một hàm khác, và sau đó hàm được gọi lại gọi lại hàm ban đầu.
-- Thứ tự giải quyết: Khi giải quyết bài toán đệ quy, thứ tự của các bài toán con được giải quyết có thể ảnh hưởng đến hiệu suất của thuật toán. Đệ quy có thể được giải quyết theo thứ tự trên xuống hoặc từ dưới lên.
+- Thứ tự giải quyết: Khi giải quyết bài toán đệ quy, thứ tự của các bài toán con được giải quyết có thể ảnh hưởng đến hiệu suất của thuật toán. Đệ quy có thể được giải quyết theo thứ tự trên xuống hoặc từ dưới lên (backtracking).
 - Thời gian và không gian: Thời gian và không gian là hai yếu tố quan trọng cần được xem xét khi sử dụng đệ quy. Đệ quy có thể tốn nhiều thời gian và bộ nhớ hơn so với các phương pháp khác.
 
 Ngoaì ra cần lưu ý một số định lý liên quan đến đệ quy như sau:
@@ -66,17 +64,9 @@ struct Node {
   Ta có thể áp dụng đệ quy để tìm chiều cao của một cây nhị phân như sau:
   
   ```
-  int getHeight(node root: Chiều cao tính từ node này) {
-    if (Cây không chứa node nào) return 0; // base case: Cây không có nút nào thì có chiều cao là 0
-    
-    Khởi tạo chiều cao của cây con trái: 
-      leftHeight = getHeight(node root->left: Chiều cao bắt đầu tính từ node con bên trái)  // Recursive part
-    Khởi tạo chiều cao của cây con phải: 
-      rightHeight = getHeight(node root->right: Chiều cao bắt đầu tính từ node con bên phải)  // Recursive part
-      
-    Trả về chiều cao của cây
-    return 1 + max (leftHeight, rightHeight); // Hàm đệ quy được gọi
-  }
+  1. Khi cây rỗng (node duy nhất là null) thì cây có chiều cao là 0 (base case).
+  2. Khởi tạo 2 biến leftHeight và rightHeight lần lượt là chiều cao của cây con trái và cây con phải (đệ quy).
+  3. Trả về chiều cao của cây là: 1 (node ban đầu) + max ( leftHeight, rightHeight) (gọi hàm đệ quy).
   ```
 
 
@@ -155,7 +145,14 @@ Tổng quan, cải tiến này giúp tối ưu hóa thời gian tính toán và 
 - Space complexity: O(h), trong đó h là chiều cao của cây. Do sử dụng đệ quy, với mỗi lời gọi đệ quy, một khung stack mới được tạo ra, và nó sẽ được giải phóng khi hàm đệ quy trả về. Vì vậy, tối đa có thể có h khung stack trên đỉnh nhau, do đó không gian bổ sung tối đa mà thuật toán này sử dụng là O(h). Trong trường hợp xấu nhất, khi cây là cây màu đen (nghĩa là có chiều cao là log n), không gian bổ sung sẽ là O(log n).
 
 
-## **6, Bài tập** ##
+## **6, Cách giải quyết một bài toán bằng đệ quy** ##
+Sau khi đi qua những lý thuyết và ví dụ ở trên, ta có thể tổng quát cách giải quyết một bài toán bằng đệ quy như sau:
+- Tìm ra input cơ bản nhất có thể, hay có thể hiểu là tìm trường hợp cơ sở của hàm đệ quy.
+- Thiết lập ví dụ với các input khác nhau và hình tượng hóa vấn đề.
+- Tạo lập mối quan hệ giữa một trường hợp với trường hợp đơn giản hơn (dưới 1 bậc).
+- Khái quát hóa mẫu thiết kế.
+
+## **7, Bài tập** ##
 Sau đây là một vài ví dụ về bài tập đệ quy:
 - Tính giai thừa: Giai thừa của một số n là tích của dãy số dương từ 1 đến n, hay có thể gọi là tích của n với giai thừa của (n-1). Do đó ta có thể thiết kế hàm đệ quy cho (n-1) cho đến khi n bằng 1.
 
